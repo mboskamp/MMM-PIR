@@ -1,4 +1,5 @@
 {
-  "HEADER": "PIR countdown",
-  "INVALID_PARAM_ERROR": "Error while executing command `{command}`. Expecting {paramcount} parameter of type {paramtypes}."
+  "HEADER": "Time until standby:",
+  "LAST_USER_PRESENCE": "Last activity:",
+  "TELEGRAM_COMMAND_ERROR": "Error while executing command `{command}`."
 }

@@ -1,9 +1,5 @@
 Module.register("MMM-PIR", {
 
-    counter: null,
-    customCounter: null,
-    interval: null,
-
     defaults: {
         sensorPin: 4,
         delay: 10000,
@@ -15,12 +11,45 @@ Module.register("MMM-PIR", {
     start: function () {
         Log.log(this.name + ' is started!');
         this.sendSocketNotification("CONFIG", this.config);
+
+        moment.locale(config.language);
     },
 
     getDom: function () {
+        var self = this;
+
         var html = document.createElement("div");
-        html.innerHTML = formatMillis(this.counter);
+        html.className = "wrapper";
+
+        if (typeof self.counter !== "undefined") {
+            var headline = document.createElement("div");
+            headline.className = "head";
+            headline.innerText = "standby in";
+            html.appendChild(headline);
+
+            var time = document.createElement("div");
+            time.className = "time";
+            time.innerText = formatMillis(this.counter);
+            html.appendChild(time);
+
+            if (typeof self.presence === "object") {
+                var last = document.createElement("div");
+                last.className = "last";
+                last.innerText = self.translate("LAST_USER_PRESENCE") + " " + self.presence.format("dddd, LL HH:mm:ss");
+                html.appendChild(last);
+            }
+
+        }
+
         return html;
+    },
+
+    getStyles: function () {
+        return ["style.css"];
+    },
+
+    getScripts: function () {
+        return ["moment.js"];
     },
 
     getCommands: function (commander) {
@@ -50,6 +79,7 @@ Module.register("MMM-PIR", {
 
     socketNotificationReceived: function (notification, payload) {
         if (notification === "USER_PRESENCE") {
+            this.presence = moment();
             this.startCountdown();
         }
     },
@@ -96,11 +126,7 @@ Module.register("MMM-PIR", {
     setCustomCountdown: function (commander, handler) {
         var ccd = parseInt(handler.args);
         if (isNaN(ccd) || ccd < 1) {
-            handler.reply("TEXT", this.translate("INVALID_PARAM_ERROR", {
-                "command": "setCustomPirCountdown",
-                "paramcount": 1,
-                "paramtypes": "integer"
-            }));
+            handler.reply("TEXT", this.translate("TELEGRAM_COMMAND_ERROR", {"command": "setCustomPirCountdown"}));
         } else {
             this.customCounter = ccd * 1000;
             this.resetCountdown();

@@ -1,3 +1,5 @@
 {
-  "INVALID_PARAM_ERROR": "de Error while executing command {command}. Expecting {paramcount} parameter of type {paramtypes}."
+  "HEADER": "Zeit bis Ruhezustand:",
+  "LAST_USER_PRESENCE": "Letzte Aktivität:",
+  "INVALID_PARAM_ERROR": "Fehler beim Ausführen des Kommandos: `{command}`."
 }
