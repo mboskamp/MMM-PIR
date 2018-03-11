@@ -1,1 +1,2 @@
-echo "display turned on"
+tvservice -p
+echo "turn on display"

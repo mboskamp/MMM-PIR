@@ -1,1 +1,2 @@
-echo "display turned off"
+tvservice -o
+echo "turn off display"

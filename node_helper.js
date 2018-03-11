@@ -12,16 +12,17 @@ module.exports = NodeHelper.create({
 
     socketNotificationReceived: function (notification, payload) {
         const self = this;
-
         if(notification === "CONFIG"){
             this.config = payload;
             this.pir = new Gpio(this.config.sensorPin, 'in', 'both');
 
             this.pir.watch(function(err, value) {
-                if (value == valueOn) {
+                if (value == 1) {
                     self.sendSocketNotification("USER_PRESENCE", true);
-                    if(config.turnOffDisplay){
-                        execute(buildCommand("/default/displayOn.sh"));
+                    if(self.config.turnOffDisplay){
+                        execute(buildCommand("/default/displayOn.sh"), function(stdout){
+                            console.log(stdout);
+                        });
                     }
                 }
             });
@@ -31,8 +32,10 @@ module.exports = NodeHelper.create({
                     console.log(stdout);
                 });
             }
-            if(config.turnOffDisplay){
-                execute(buildCommand("/default/displayOff.sh"));
+            if(self.config.turnOffDisplay){
+                execute(buildCommand("/default/displayOff.sh"), function(stdout){
+                    console.log(stdout);
+                });
             }
         }
     },
