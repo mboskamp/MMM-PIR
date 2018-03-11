@@ -16,32 +16,34 @@ Module.register("MMM-PIR", {
     },
 
     getDom: function () {
-        var self = this;
+        if(this.config.showCountdown) {
+            var self = this;
 
-        var html = document.createElement("div");
-        html.className = "wrapper";
+            var html = document.createElement("div");
+            html.className = "wrapper";
 
-        if (typeof self.counter !== "undefined") {
-            var headline = document.createElement("div");
-            headline.className = "head";
-            headline.innerText = "standby in";
-            html.appendChild(headline);
+            if (typeof self.counter !== "undefined") {
+                var headline = document.createElement("div");
+                headline.className = "head";
+                headline.innerText = "standby in";
+                html.appendChild(headline);
 
-            var time = document.createElement("div");
-            time.className = "time";
-            time.innerText = formatMillis(this.counter);
-            html.appendChild(time);
+                var time = document.createElement("div");
+                time.className = "time";
+                time.innerText = formatMillis(this.counter);
+                html.appendChild(time);
 
-            if (typeof self.presence === "object") {
-                var last = document.createElement("div");
-                last.className = "last";
-                last.innerText = self.translate("LAST_USER_PRESENCE") + " " + self.presence.format("dddd, LL HH:mm:ss");
-                html.appendChild(last);
+                if (typeof self.presence === "object") {
+                    var last = document.createElement("div");
+                    last.className = "last";
+                    last.innerText = self.translate("LAST_USER_PRESENCE") + " " + self.presence.format("dddd, LL HH:mm:ss");
+                    html.appendChild(last);
+                }
+
             }
 
+            return html;
         }
-
-        return html;
     },
 
     getStyles: function () {
