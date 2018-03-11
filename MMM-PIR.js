@@ -16,7 +16,7 @@ Module.register("MMM-PIR", {
     },
 
     getDom: function () {
-        if(this.config.showCountdown) {
+        if (this.config.showCountdown) {
             var self = this;
 
             var html = document.createElement("div");
@@ -82,21 +82,30 @@ Module.register("MMM-PIR", {
     socketNotificationReceived: function (notification, payload) {
         if (notification === "USER_PRESENCE") {
             this.presence = moment();
-            this.startCountdown();
+            this.resetCountdown();
         }
     },
 
     notificationReceived: function (notification, payload) {
         if (notification === 'DOM_OBJECTS_CREATED') {
             //DOM creation complete, let's start the module
-            this.startCountdown();
+            this.resetCountdown();
         }
     },
 
-    startCountdown: function () {
-        var self = this;
-        self.resetCountdown();
+    resetDefaults: function () {
+        this.counter = this.config.delay;
+    },
 
+    resetCountdown: function () {
+        var self = this;
+        clearInterval(self.interval);
+        if (self.customCounter != null) {
+            self.counter = this.customCounter;
+        } else {
+            self.resetDefaults();
+        }
+        self.updateDom();
         self.interval = setInterval(function () {
             self.counter -= 1000;
             if (self.counter <= 0) {
@@ -105,24 +114,6 @@ Module.register("MMM-PIR", {
             }
             self.updateDom();
         }, 1000);
-    },
-
-    resetDefaults: function () {
-        this.counter = this.config.delay;
-        this.updateDom();
-    },
-
-    resetCountdown: function () {
-        clearInterval(this.interval);
-        if (this.config.showCountdown) {
-            if (this.customCounter != null) {
-                this.counter = this.customCounter;
-                this.updateDom();
-            } else {
-                this.resetDefaults();
-            }
-        }
-
     },
 
     setCustomCountdown: function (commander, handler) {
