@@ -47,7 +47,7 @@ Module.register("MMM-PIR", {
     },
 
     getStyles: function () {
-        return ["style.css"];
+        return ["mmm-pir-style.css"];
     },
 
     getScripts: function () {
