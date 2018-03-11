@@ -25,7 +25,7 @@ Module.register("MMM-PIR", {
             if (typeof self.counter !== "undefined") {
                 var headline = document.createElement("div");
                 headline.className = "head";
-                headline.innerText = "standby in";
+                headline.innerText = self.translate("HEADER");
                 html.appendChild(headline);
 
                 var time = document.createElement("div");
