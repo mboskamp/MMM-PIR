@@ -39,3 +39,12 @@ To display the module insert it in the config.js file. Here is an example:
 | turnOffDisplay | Should the display turn off after timeout? | Boolean | true |
 | showCountdown | Should the MagicMirror display the countdown on screen? | Boolean | true |
 | callbackScripts | Scripts that execute after the timeout. Scripts must be placed inside the `callbackScripts` folder. Supported script types: sh, py, js| Array of strings | none |
+
+## Telegram commands
+You can control this module via Telegram with the following commands. Note: You need to install [MMM-TelegramBot](https://github.com/eouia/MMM-TelegramBot)
+
+| Command | Description |
+| --- | --- |
+| /resetPir | Resets the countdown to configured settings. |
+| /resetPirDefaults | Reset the countdown to default settings. |
+| /setCustomPirCountdown | Configure a custom countdown (in seconds). |
