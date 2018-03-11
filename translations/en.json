@@ -1,0 +1,4 @@
+{
+  "HEADER": "PIR countdown",
+  "INVALID_PARAM_ERROR": "Error while executing command `{command}`. Expecting {paramcount} parameter of type {paramtypes}."
+}

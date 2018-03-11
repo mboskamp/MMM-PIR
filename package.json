@@ -1,0 +1,24 @@
+{
+  "name": "mmm-pir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "MMM-PIR.js",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "onoff": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mboskamp/MMM-PIR.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mboskamp/MMM-PIR/issues"
+  },
+  "homepage": "https://github.com/mboskamp/MMM-PIR#readme"
+}

@@ -1,0 +1,3 @@
+{
+  "INVALID_PARAM_ERROR": "de Error while executing command {command}. Expecting {paramcount} parameter of type {paramtypes}."
+}
