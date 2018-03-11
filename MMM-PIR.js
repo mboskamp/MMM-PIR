@@ -6,7 +6,7 @@ Module.register("MMM-PIR", {
 
     defaults: {
         sensorPin: 4,
-        delay: 3000,
+        delay: 10000,
         turnOffDisplay: true,
         showCountdown: true,
         callbackScripts: []
@@ -48,8 +48,14 @@ Module.register("MMM-PIR", {
         }
     },
 
+    socketNotificationReceived: function (notification, payload) {
+        if (notification === "USER_PRESENCE") {
+            this.startCountdown();
+        }
+    },
+
     notificationReceived: function (notification, payload) {
-        if (notification === 'DOM_OBJECTS_CREATED' || notification === "USER_PRESENCE") {
+        if (notification === 'DOM_OBJECTS_CREATED') {
             //DOM creation complete, let's start the module
             this.startCountdown();
         }
@@ -57,7 +63,6 @@ Module.register("MMM-PIR", {
 
     startCountdown: function () {
         var self = this;
-
         self.resetCountdown();
 
         self.interval = setInterval(function () {
@@ -76,6 +81,7 @@ Module.register("MMM-PIR", {
     },
 
     resetCountdown: function () {
+        clearInterval(this.interval);
         if (this.config.showCountdown) {
             if (this.customCounter != null) {
                 this.counter = this.customCounter;
@@ -84,6 +90,7 @@ Module.register("MMM-PIR", {
                 this.resetDefaults();
             }
         }
+
     },
 
     setCustomCountdown: function (commander, handler) {
