@@ -81,7 +81,7 @@ Module.register("MMM-PIR", {
 
     socketNotificationReceived: function (notification, payload) {
         if (notification === "USER_PRESENCE") {
-            this.presence = moment();
+            this.presence_temp = moment();
             this.resetCountdown();
         }
     },
@@ -109,6 +109,7 @@ Module.register("MMM-PIR", {
         self.interval = setInterval(function () {
             self.counter -= 1000;
             if (self.counter <= 0) {
+                self.presence = self.presence_temp;
                 self.sendSocketNotification('TIMER_EXPIRED');
                 clearInterval(self.interval);
             }
