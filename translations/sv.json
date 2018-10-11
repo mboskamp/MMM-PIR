@@ -1,0 +1,5 @@
+{
+  "HEADER": "Tid kvar till stand-by läge:",
+  "LAST_USER_PRESENCE": "Senaste aktivitet:",
+  "TELEGRAM_COMMAND_ERROR": "Ett fel uppstod när ett kommando skulle utföras `{command}`."
+}
