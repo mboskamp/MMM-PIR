@@ -40,6 +40,8 @@ To display the module insert it in the config.js file. Here is an example:
 | showCountdown | Should the MagicMirror display the countdown on screen? | Boolean | true |
 | callbackScripts | Scripts that execute after the timeout. Scripts must be placed inside the `callbackScripts` folder. Supported script types: sh, py, js| Array of strings | none |
 
+**Note:** The callback scripts to switch the screen [on](https://github.com/mboskamp/MMM-PIR/blob/master/callbackScripts/default/displayOn.sh) and [off](https://github.com/mboskamp/MMM-PIR/blob/master/callbackScripts/default/displayOff.sh) feature two ways of disabling the video output to the monitor. By default, this module uses `vcgencmd`. The second option (`tvservice`) can be used by removing the `vcgencmd` command and include the commented `tvservice`command in each file.
+
 ## Telegram commands
 You can control this module via Telegram with the following commands. Note: You need to install [MMM-TelegramBot](https://github.com/eouia/MMM-TelegramBot)
 
