@@ -1,3 +1,4 @@
+var NodeHelper = require("node_helper");
 const exec = require('child_process').exec;
 const fs = require('fs');
 const Gpio = require('onoff').Gpio;
